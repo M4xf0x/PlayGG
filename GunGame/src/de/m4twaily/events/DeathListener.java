@@ -48,6 +48,17 @@ public class DeathListener implements Listener {
 
 			}
 		}
+		
+		if (!ShopEvents.feather.contains(p.getName())) {
+			p.setLevel(p.getLevel() / 2);
+
+			if (p.getLevel() == 0) {
+				p.setLevel(1);
+			}
+
+		} else {
+			ShopEvents.feather.remove(p.getName());
+		}
 	}
 
 	@EventHandler
@@ -75,16 +86,6 @@ public class DeathListener implements Listener {
 				ChestItemStack.setItemMeta(ChestMeta);
 				p.getInventory().setItem(8, ChestItemStack);
 
-				if (!ShopEvents.feather.contains(p.getName())) {
-					p.setLevel(p.getLevel() / 2);
-
-					if (p.getLevel() == 0) {
-						p.setLevel(1);
-					}
-
-				} else {
-					ShopEvents.feather.remove(p.getName());
-				}
 			}
 		}, 5);
 

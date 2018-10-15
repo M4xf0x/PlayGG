@@ -1,0 +1,9 @@
+name: GunGame
+version: 1.0
+author: M4Twaily
+main: de.m4twaily.gg.Main
+description: Gungame Plugin for PlayWithMe de
+
+commands:
+  gungame:
+    

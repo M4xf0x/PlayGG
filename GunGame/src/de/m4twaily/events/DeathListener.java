@@ -30,35 +30,31 @@ public class DeathListener implements Listener {
 
 		e.getDrops().clear();
 
-		Bukkit.getScheduler().scheduleSyncDelayedTask(Main.main, new Runnable() {
-
-			@Override
-			public void run() {
-				p.spigot().respawn();
-			}
-		}, 5);
-
-		e.setDeathMessage(null);
 		if (h != null) {
 			if (p != h) {
 				p.sendMessage(Main.prefix + "§7Du wurdest von§6 " + h.getName() + " §cgekillt!");
 				h.sendMessage(Main.prefix + "§7Du hast §6" + p.getName() + " §agekillt!");
 				h.giveExpLevels(1);
+				
+				Main.levels.put(h.getName(), h.getLevel());
+				
 				h.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 20, 20));
 
 			}
 		}
-		
-		if (!ShopEvents.feather.contains(p.getName())) {
-			p.setLevel(p.getLevel() / 2);
+		Bukkit.getScheduler().scheduleSyncDelayedTask(Main.main, new Runnable() {
 
-			if (p.getLevel() == 0) {
-				p.setLevel(1);
+			
+			@Override
+			public void run() {
+				p.spigot().respawn();
+				
 			}
+		}, 5);
 
-		} else {
-			ShopEvents.feather.remove(p.getName());
-		}
+		e.setDeathMessage(null);
+
+		
 	}
 
 	@EventHandler
@@ -85,7 +81,19 @@ public class DeathListener implements Listener {
 				ChestMeta.setDisplayName("§6§lSHOP");
 				ChestItemStack.setItemMeta(ChestMeta);
 				p.getInventory().setItem(8, ChestItemStack);
+					
+				if (!ShopEvents.feather.contains(p.getName())) {
+					p.setLevel(Main.levels.get(p.getName()) / 2);
 
+					if (Main.levels.get(p.getName()) == 0) {
+						p.setLevel(1);
+					}
+					
+					Main.levels.put(p.getName(), p.getLevel());
+
+				} else {
+					ShopEvents.feather.remove(p.getName());
+				}
 			}
 		}, 5);
 

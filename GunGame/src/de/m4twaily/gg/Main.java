@@ -1,5 +1,7 @@
 package de.m4twaily.gg;
 
+import java.util.HashMap;
+
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -19,6 +21,7 @@ import de.m4twaily.shop.ShopEvents;
 public class Main extends JavaPlugin {
 	public static String prefix;
 	public static Main main;
+	public static HashMap<String ,Integer> levels = new HashMap<>();
 
 	public void onEnable() {
 		main = this;

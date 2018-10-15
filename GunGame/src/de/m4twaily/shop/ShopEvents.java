@@ -41,6 +41,8 @@ public class ShopEvents implements Listener {
 						if (p.getLevel() >= 5) {
 
 							p.setLevel(p.getLevel() - 5);
+							Main.levels.put(p.getName(), p.getLevel());
+
 							ItemStack FeatherItemStack = new ItemStack(Material.FISHING_ROD, 1);
 							ItemMeta FeatherMeta = FeatherItemStack.getItemMeta();
 							ItemStack ChestItemStack = new ItemStack(Material.CHEST, 1);
@@ -75,7 +77,9 @@ public class ShopEvents implements Listener {
 					} else if (e.getCurrentItem().getType() == Material.FEATHER) {
 
 						if (p.getLevel() >= 15) {
+
 							p.setLevel(p.getLevel() - 15);
+							Main.levels.put(p.getName(), p.getLevel());
 
 							feather.add(p.getName());
 
@@ -112,7 +116,9 @@ public class ShopEvents implements Listener {
 					} else if (e.getCurrentItem().getType() == Material.GOLD_HOE) {
 
 						if (p.getLevel() >= 10) {
+
 							p.setLevel(p.getLevel() - 10);
+							Main.levels.put(p.getName(), p.getLevel());
 
 							ItemStack HoeItemStack = new ItemStack(Material.GOLD_HOE, 1);
 							ItemMeta HoeMeta = HoeItemStack.getItemMeta();

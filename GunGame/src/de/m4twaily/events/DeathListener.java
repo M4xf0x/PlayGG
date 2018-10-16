@@ -87,7 +87,7 @@ public class DeathListener implements Listener {
 				p.getInventory().setItem(8, ChestItemStack);
 					
 				if (!ShopEvents.feather.contains(p.getName())) {
-					p.sendMessage("DEBUG 1 + " + lvl.get(p.getName()));
+
 					p.setLevel(lvl.get(p.getName()) / 2);
 
 					if (p.getLevel() == 0) {

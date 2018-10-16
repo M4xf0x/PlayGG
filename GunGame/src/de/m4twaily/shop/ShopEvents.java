@@ -82,6 +82,8 @@ public class ShopEvents implements Listener {
 						if (p.getLevel() >= 15) {
 
 							p.setLevel(p.getLevel() - 15);
+							
+							feather.add(p.getName());
 
 							ItemStack FeatherItemStack = new ItemStack(Material.FEATHER, 1);
 							ItemMeta FeatherMeta = FeatherItemStack.getItemMeta();

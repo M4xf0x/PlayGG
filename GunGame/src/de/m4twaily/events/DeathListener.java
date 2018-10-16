@@ -95,6 +95,8 @@ public class DeathListener implements Listener {
 					}
 
 				} else {
+					p.setLevel(lvl.get(p.getName()));
+					
 					ShopEvents.feather.remove(p.getName());
 				}
 			}

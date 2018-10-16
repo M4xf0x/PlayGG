@@ -1,5 +1,7 @@
 package de.m4twaily.events;
 
+import java.util.HashMap;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -21,12 +23,16 @@ import de.m4twaily.gg.giveArmyClass;
 import de.m4twaily.shop.ShopEvents;
 
 public class DeathListener implements Listener {
+	
+	public static HashMap<String, Integer> lvl = new HashMap<>();
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onDeathKnockit(PlayerDeathEvent e) {
 
 		final Player p = e.getEntity();
 		Player h = e.getEntity().getKiller();
+		
+		lvl.put(p.getName(), p.getLevel());
 
 		e.getDrops().clear();
 
@@ -35,8 +41,6 @@ public class DeathListener implements Listener {
 				p.sendMessage(Main.prefix + "§7Du wurdest von§6 " + h.getName() + " §cgekillt!");
 				h.sendMessage(Main.prefix + "§7Du hast §6" + p.getName() + " §agekillt!");
 				h.giveExpLevels(1);
-				
-				Main.levels.put(h.getName(), h.getLevel());
 				
 				h.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 20, 20));
 
@@ -83,19 +87,17 @@ public class DeathListener implements Listener {
 				p.getInventory().setItem(8, ChestItemStack);
 					
 				if (!ShopEvents.feather.contains(p.getName())) {
-					p.setLevel(Main.levels.get(p.getName()) / 2);
+					p.sendMessage("DEBUG 1 + " + lvl.get(p.getName()));
+					p.setLevel(lvl.get(p.getName()) / 2);
 
-					if (Main.levels.get(p.getName()) == 0) {
+					if (p.getLevel() == 0) {
 						p.setLevel(1);
 					}
-					
-					Main.levels.put(p.getName(), p.getLevel());
 
 				} else {
 					ShopEvents.feather.remove(p.getName());
 				}
 			}
 		}, 5);
-
-	}
+	} 	
 }

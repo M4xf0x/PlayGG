@@ -41,7 +41,6 @@ public class ShopEvents implements Listener {
 						if (p.getLevel() >= 5) {
 
 							p.setLevel(p.getLevel() - 5);
-							Main.levels.put(p.getName(), p.getLevel());
 
 							ItemStack FeatherItemStack = new ItemStack(Material.FISHING_ROD, 1);
 							ItemMeta FeatherMeta = FeatherItemStack.getItemMeta();
@@ -54,7 +53,11 @@ public class ShopEvents implements Listener {
 							FeatherMeta.setDisplayName("§c§lAngel");
 							FeatherItemStack.setItemMeta(FeatherMeta);
 
-							p.getInventory().clear();
+							p.getInventory().setBoots(null);
+							p.getInventory().setLeggings(null);
+							p.getInventory().setChestplate(null);
+							p.getInventory().setHelmet(null);
+
 							p.getInventory().setItem(8, ChestItemStack);
 							giveArmyClass.giveArmor(p);
 							p.getInventory().addItem(FeatherItemStack);
@@ -79,9 +82,6 @@ public class ShopEvents implements Listener {
 						if (p.getLevel() >= 15) {
 
 							p.setLevel(p.getLevel() - 15);
-							Main.levels.put(p.getName(), p.getLevel());
-
-							feather.add(p.getName());
 
 							ItemStack FeatherItemStack = new ItemStack(Material.FEATHER, 1);
 							ItemMeta FeatherMeta = FeatherItemStack.getItemMeta();
@@ -94,7 +94,11 @@ public class ShopEvents implements Listener {
 							FeatherMeta.setDisplayName("§9§lRettungs-Feder");
 							FeatherItemStack.setItemMeta(FeatherMeta);
 
-							p.getInventory().clear();
+							p.getInventory().setBoots(null);
+							p.getInventory().setLeggings(null);
+							p.getInventory().setChestplate(null);
+							p.getInventory().setHelmet(null);
+
 							p.getInventory().setItem(8, ChestItemStack);
 							giveArmyClass.giveArmor(p);
 							p.getInventory().addItem(FeatherItemStack);
@@ -118,7 +122,6 @@ public class ShopEvents implements Listener {
 						if (p.getLevel() >= 10) {
 
 							p.setLevel(p.getLevel() - 10);
-							Main.levels.put(p.getName(), p.getLevel());
 
 							ItemStack HoeItemStack = new ItemStack(Material.GOLD_HOE, 1);
 							ItemMeta HoeMeta = HoeItemStack.getItemMeta();
@@ -131,7 +134,11 @@ public class ShopEvents implements Listener {
 							HoeMeta.setDisplayName("§6§lBooster-GUN");
 							HoeItemStack.setItemMeta(HoeMeta);
 
-							p.getInventory().clear();
+							p.getInventory().setBoots(null);
+							p.getInventory().setLeggings(null);
+							p.getInventory().setChestplate(null);
+							p.getInventory().setHelmet(null);
+
 							p.getInventory().setItem(8, ChestItemStack);
 							giveArmyClass.giveArmor(p);
 							p.getInventory().addItem(HoeItemStack);

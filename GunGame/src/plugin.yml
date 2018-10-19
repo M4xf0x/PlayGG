@@ -1,4 +1,4 @@
-name: PlayGunGame
+name: GunGame
 version: 0.9
 author: M4Twaily
 main: de.m4twaily.gg.Main
@@ -6,4 +6,5 @@ description: Gungame Plugin for PlayWithMe de
 
 commands:
   gungame:
+    aliases: [gg]
     

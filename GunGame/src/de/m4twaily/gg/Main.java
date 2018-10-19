@@ -43,6 +43,6 @@ public class Main extends JavaPlugin {
 		getConfig().options().copyDefaults(true);
 		saveConfig();
 
-		prefix = getConfig().getString("Config.prefix").replaceAll("&", "§");
+		prefix = getConfig().getString("Config.prefix").replaceAll("&", "§")+ " §8» " ;
 	}
 }

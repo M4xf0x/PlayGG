@@ -12,6 +12,7 @@ import de.m4twaily.events.DeathListener;
 import de.m4twaily.events.ExpEvent;
 import de.m4twaily.events.JoinQuit;
 import de.m4twaily.events.MoveProtection;
+import de.m4twaily.events.SkullEvents;
 import de.m4twaily.shop.AngelEvents;
 import de.m4twaily.shop.GunEvents;
 import de.m4twaily.shop.ShopEvents;
@@ -36,6 +37,7 @@ public class Main extends JavaPlugin {
 		pm.registerEvents(new DamageProtectionEvent(), this);
 		pm.registerEvents(new GunEvents(), this);
 		pm.registerEvents(new AngelEvents(), this);
+		pm.registerEvents(new SkullEvents(), this);
 		this.getCommand("gungame").setExecutor(new GunGame());
 	}
 

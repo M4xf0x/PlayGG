@@ -37,8 +37,6 @@ public class GunGame implements CommandExecutor {
 				} else if (args[0].equalsIgnoreCase("spawnshop")) {
 					spawnshop(p);
 
-				} else if (args[0].equalsIgnoreCase("prefix")) {
-
 				} else if (args[0].equalsIgnoreCase("expl")) {
 					expl(p);
 

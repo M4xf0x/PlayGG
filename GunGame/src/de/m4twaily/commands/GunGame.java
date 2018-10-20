@@ -238,6 +238,7 @@ public class GunGame implements CommandExecutor {
 		p.sendMessage("   §8» §e/GunGame setspawn");
 		p.sendMessage("   §8» §e/GunGame pos1 / 2");
 		p.sendMessage("   §8» §e/GunGame spawnshop");
+		p.sendMessage("   §8» §e/GunGame build");
 		p.sendMessage("   §8» §e/GunGame xp");
 		p.sendMessage(" ");
 

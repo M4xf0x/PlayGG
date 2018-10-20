@@ -60,7 +60,7 @@ public class Main extends JavaPlugin {
 			MySQL.connect();
 
 			PreparedStatement ps = MySQL.getConnection()
-					.prepareStatement("CREATE TABLE IF NOT EXISTS Points (UUID VARCHAR(100),Kills INT(100),Deaths INT(100))");
+					.prepareStatement("CREATE TABLE IF NOT EXISTS points (UUID VARCHAR(100),Kills INT(100),Deaths INT(100))");
 
 			ps.executeUpdate();
 

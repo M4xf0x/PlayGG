@@ -6,13 +6,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import de.m4twaily.gg.Main;
+
 public class MySQL {
 
-	public static String host = "localhost";
-	public static String port = "3306";
-	public static String database = "gungame";
-	public static String username = "test";
-	public static String password = "nozLWfstbYU1uikG";
+	public static String host = Main.main.getConfig().getString("MySQL.host");
+	public static String port = Main.main.getConfig().getString("MySQL.port");
+	public static String database = Main.main.getConfig().getString("MySQL.database");
+	public static String username = Main.main.getConfig().getString("MySQL.username");
+	public static String password = Main.main.getConfig().getString("MySQL.password");
 	public static Connection con;
 
 	public static void connect() {

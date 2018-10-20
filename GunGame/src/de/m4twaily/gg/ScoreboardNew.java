@@ -32,10 +32,18 @@ public class ScoreboardNew {
 		coins.setScore(8);
 		Score spacer03 = obj.getScore("   ");
 		spacer03.setScore(7);
+		Score stats_name = obj.getScore("§6§lStats");
+		stats_name.setScore(3);
+		Score stats = obj.getScore("§a§l/stats ");
+		stats.setScore(2);
+		Score spacer04 = obj.getScore("    ");
+		spacer04.setScore(4);
 		Score online_name = obj.getScore("§6§lOnline");
 		online_name.setScore(6);
 		Score online = obj.getScore("§a§l " + Bukkit.getServer().getOnlinePlayers().size());
 		online.setScore(5);
+		Score spacer05 = obj.getScore("     ");
+		spacer05.setScore(1);
 
 		p.setScoreboard(board);
 

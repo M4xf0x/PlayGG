@@ -80,9 +80,9 @@ public class Points {
 				PreparedStatement ps = MySQL.getConnection()
 						.prepareStatement("INSERT INTO points (UUID, Kills, Deaths) VALUES (?,?,?)");
 
-				ps.setInt(2, currentValue + kills);
+				ps.setInt(2, 0 + kills);
 				ps.setString(1, uuid.toString());
-				ps.setInt(3, currentDeaths + deaths);
+				ps.setInt(3, 0 + deaths);
 
 				ps.executeUpdate();
 

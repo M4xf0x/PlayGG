@@ -15,6 +15,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import de.m4twaily.events.Anti;
 import de.m4twaily.gg.Main;
+import de.m4twaily.gg.RestartClass;
 import de.m4twaily.gg.giveArmyClass;
 
 public class GunGame implements CommandExecutor {
@@ -47,7 +48,10 @@ public class GunGame implements CommandExecutor {
 
 				} else if (args[0].equalsIgnoreCase("build")) {
 					build(p);
-					
+
+				} else if (args[0].equalsIgnoreCase("restart")) {
+					restart(p);
+
 				} else {
 					help(p);
 				}
@@ -198,7 +202,7 @@ public class GunGame implements CommandExecutor {
 			if (!Anti.buildMode.contains(p.getName())) {
 
 				Anti.buildMode.add(p.getName());
-				
+
 				p.setGameMode(GameMode.CREATIVE);
 				p.sendMessage(" ");
 				p.sendMessage(Main.prefix + "§7Du wurdest in den §6§lBuild-Mode §7gesetzt");
@@ -206,7 +210,7 @@ public class GunGame implements CommandExecutor {
 
 			} else {
 				Anti.buildMode.remove(p.getName());
-				
+
 				p.setGameMode(GameMode.SURVIVAL);
 				p.sendMessage(" ");
 				p.sendMessage(Main.prefix + "§7Du wurdest aus dem §6§lBuild-Mode §7entfernt");
@@ -214,6 +218,17 @@ public class GunGame implements CommandExecutor {
 			}
 		}
 
+	}
+
+	void restart(Player p) {
+		if (p.hasPermission("gg.restart") || p.hasPermission("gg.*")) {
+			if (!Bukkit.getScheduler().isCurrentlyRunning(RestartClass.TID) && !Bukkit.getScheduler().isQueued(RestartClass.TID)) {
+				
+				RestartClass.restart();
+				
+			}
+
+		}
 	}
 
 	void help(Player p) {

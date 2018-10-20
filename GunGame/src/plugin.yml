@@ -7,4 +7,6 @@ description: Gungame Plugin for PlayWithMe de
 commands:
   gungame:
     aliases: [gg]
+  stats:
+    aliases: [kd]
     

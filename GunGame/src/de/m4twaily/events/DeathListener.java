@@ -20,6 +20,7 @@ import org.bukkit.potion.PotionEffectType;
 import de.m4twaily.gg.Main;
 import de.m4twaily.gg.ScoreboardNew;
 import de.m4twaily.gg.giveArmyClass;
+import de.m4twaily.mysql.Points;
 import de.m4twaily.shop.ShopEvents;
 
 public class DeathListener implements Listener {
@@ -32,6 +33,8 @@ public class DeathListener implements Listener {
 		final Player p = e.getEntity();
 		Player h = e.getEntity().getKiller();
 
+		Points.addCoins(p.getUniqueId(), 0, 1);
+
 		lvl.put(p.getName(), p.getLevel());
 
 		e.getDrops().clear();
@@ -41,6 +44,8 @@ public class DeathListener implements Listener {
 				p.sendMessage(Main.prefix + "§7Du wurdest von§6 " + h.getName() + " §cgekillt!");
 				h.sendMessage(Main.prefix + "§7Du hast §6" + p.getName() + " §agekillt!");
 				h.giveExpLevels(1);
+
+				Points.addCoins(h.getUniqueId(), 1, 0);
 
 				h.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 20, 20));
 
@@ -74,8 +79,6 @@ public class DeathListener implements Listener {
 
 			@Override
 			public void run() {
-				ScoreboardNew.doScoreboard(p);
-				giveArmyClass.giveArmor(p);
 
 				ItemStack ChestItemStack = new ItemStack(Material.CHEST, 1);
 				ItemMeta ChestMeta = ChestItemStack.getItemMeta();
@@ -98,6 +101,10 @@ public class DeathListener implements Listener {
 
 					ShopEvents.feather.remove(p.getName());
 				}
+
+				ScoreboardNew.doScoreboard(p);
+				giveArmyClass.giveArmor(p);
+
 			}
 		}, 5);
 	}

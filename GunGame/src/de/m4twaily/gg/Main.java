@@ -1,10 +1,14 @@
 package de.m4twaily.gg;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import de.m4twaily.commands.GunGame;
+import de.m4twaily.commands.StatsCMD;
 import de.m4twaily.events.Anti;
 import de.m4twaily.events.BounceEvents;
 import de.m4twaily.events.DamageProtectionEvent;
@@ -13,6 +17,7 @@ import de.m4twaily.events.ExpEvent;
 import de.m4twaily.events.JoinQuit;
 import de.m4twaily.events.MoveProtection;
 import de.m4twaily.events.SkullEvents;
+import de.m4twaily.mysql.MySQL;
 import de.m4twaily.shop.AngelEvents;
 import de.m4twaily.shop.GunEvents;
 import de.m4twaily.shop.ShopEvents;
@@ -24,6 +29,7 @@ public class Main extends JavaPlugin {
 	public void onEnable() {
 		main = this;
 		loadConfig();
+		doMySQL();
 
 		PluginManager pm = Bukkit.getPluginManager();
 
@@ -39,6 +45,7 @@ public class Main extends JavaPlugin {
 		pm.registerEvents(new AngelEvents(), this);
 		pm.registerEvents(new SkullEvents(), this);
 		this.getCommand("gungame").setExecutor(new GunGame());
+		this.getCommand("stats").setExecutor(new StatsCMD());
 	}
 
 	public void loadConfig() {
@@ -46,5 +53,20 @@ public class Main extends JavaPlugin {
 		saveConfig();
 
 		prefix = getConfig().getString("Config.prefix").replaceAll("&", "§")+ " §8» " ;
+	}
+	
+	public void doMySQL() {
+		try {
+			MySQL.connect();
+
+			PreparedStatement ps = MySQL.getConnection()
+					.prepareStatement("CREATE TABLE IF NOT EXISTS Points (UUID VARCHAR(100),Kills INT(100),Deaths INT(100))");
+
+			ps.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 	}
 }

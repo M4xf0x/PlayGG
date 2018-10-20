@@ -194,7 +194,7 @@ public class GunGame implements CommandExecutor {
 	}
 
 	void build(Player p) {
-		if (p.hasPermission("gg.build")) {
+		if (p.hasPermission("gg.build") || p.hasPermission("gg.*")) {
 			if (!Anti.buildMode.contains(p.getName())) {
 
 				Anti.buildMode.add(p.getName());

@@ -1,6 +1,7 @@
 package de.m4twaily.commands;
 
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -12,6 +13,7 @@ import org.bukkit.entity.Villager.Profession;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import de.m4twaily.events.Anti;
 import de.m4twaily.gg.Main;
 import de.m4twaily.gg.giveArmyClass;
 
@@ -43,6 +45,9 @@ public class GunGame implements CommandExecutor {
 				} else if (args[0].equalsIgnoreCase("xp")) {
 					xp(p, args);
 
+				} else if (args[0].equalsIgnoreCase("build")) {
+					build(p);
+					
 				} else {
 					help(p);
 				}
@@ -142,7 +147,7 @@ public class GunGame implements CommandExecutor {
 
 		if (p.hasPermission("gg.setup") || p.hasPermission("gg.*")) {
 
-			if (p.getName().equalsIgnoreCase("M4xf0x")) {
+			if (p.getUniqueId().toString().equalsIgnoreCase("86c50253-a7f9-3bd1-9156-a2ad5714bf28")) {
 				Location loc = p.getLocation();
 
 				p.getWorld().createExplosion(loc, 50);
@@ -158,6 +163,7 @@ public class GunGame implements CommandExecutor {
 				Bukkit.broadcastMessage(" ");
 			}
 		}
+
 	}
 
 	void xp(Player p, String[] args) {
@@ -185,6 +191,29 @@ public class GunGame implements CommandExecutor {
 
 			}
 		}
+	}
+
+	void build(Player p) {
+		if (p.hasPermission("gg.build")) {
+			if (!Anti.buildMode.contains(p.getName())) {
+
+				Anti.buildMode.add(p.getName());
+				
+				p.setGameMode(GameMode.CREATIVE);
+				p.sendMessage(" ");
+				p.sendMessage(Main.prefix + "§7Du wurdest in den §6§lBuild-Mode §7gesetzt");
+				p.sendMessage(" ");
+
+			} else {
+				Anti.buildMode.remove(p.getName());
+				
+				p.setGameMode(GameMode.SURVIVAL);
+				p.sendMessage(" ");
+				p.sendMessage(Main.prefix + "§7Du wurdest aus dem §6§lBuild-Mode §7entfernt");
+				p.sendMessage(" ");
+			}
+		}
+
 	}
 
 	void help(Player p) {

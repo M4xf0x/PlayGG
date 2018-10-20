@@ -14,11 +14,12 @@ public class SkullEvents implements Listener {
 	@EventHandler
 	public void onClickSkull(PlayerInteractEvent e) {
 
-		if (e.getClickedBlock().getType() == Material.SKULL && e.getAction() == Action.RIGHT_CLICK_BLOCK) {
-			Player p = e.getPlayer();
+		if (e.getClickedBlock() != null && e.getClickedBlock().getType() != null) {
+			if (e.getClickedBlock().getType() == Material.SKULL && e.getAction() == Action.RIGHT_CLICK_BLOCK) {
+				Player p = e.getPlayer();
 
-			ShopGUI.createGUI(p);
-
+				ShopGUI.createGUI(p);
+			}
 		}
 	}
 }

@@ -1,5 +1,7 @@
 package de.m4twaily.events;
 
+import java.util.ArrayList;
+
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -14,6 +16,8 @@ import org.bukkit.event.weather.ThunderChangeEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 
 public class Anti implements Listener {
+
+	public static ArrayList<String> buildMode = new ArrayList<>();
 
 	@EventHandler
 	public void onHunger(FoodLevelChangeEvent e) {
@@ -39,7 +43,7 @@ public class Anti implements Listener {
 		if (e.getPlayer() != null) {
 			Player p = e.getPlayer();
 
-			if (p.getGameMode() == GameMode.CREATIVE && p.hasPermission("eg.build")) {
+			if (p.getGameMode() == GameMode.CREATIVE && buildMode.contains(p.getName())) {
 
 			} else {
 				e.setCancelled(true);
@@ -52,7 +56,7 @@ public class Anti implements Listener {
 		if (e.getPlayer() != null) {
 			Player p = e.getPlayer();
 
-			if (p.getGameMode() == GameMode.CREATIVE && p.hasPermission("eg.build")) {
+			if (p.getGameMode() == GameMode.CREATIVE && buildMode.contains(p.getName())) {
 
 			} else {
 				e.setCancelled(true);
@@ -64,7 +68,7 @@ public class Anti implements Listener {
 	public void onPlayerDrop(PlayerDropItemEvent e) {
 		Player p = e.getPlayer();
 
-		if (p.getGameMode() == GameMode.CREATIVE && p.hasPermission("eg.build")) {
+		if (p.getGameMode() == GameMode.CREATIVE && buildMode.contains(p.getName())) {
 
 		} else {
 			e.setCancelled(true);
@@ -75,7 +79,7 @@ public class Anti implements Listener {
 	public void onInvDrag(InventoryDragEvent e) {
 		Player p = (Player) e.getWhoClicked();
 
-		if (p.getGameMode() == GameMode.CREATIVE && p.hasPermission("eg.build")) {
+		if (p.getGameMode() == GameMode.CREATIVE && buildMode.contains(p.getName())) {
 
 		} else {
 			e.setCancelled(true);

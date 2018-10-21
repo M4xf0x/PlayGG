@@ -65,7 +65,7 @@ public class GunGame implements CommandExecutor {
 
 	void setspawn(Player p) {
 
-		if (p.hasPermission("gg.setup") || p.hasPermission("gg.*")) {
+		if (p.hasPermission("gg.setup")) {
 
 			int x = p.getLocation().getBlockX();
 			int y = p.getLocation().getBlockY() + 1;
@@ -86,7 +86,7 @@ public class GunGame implements CommandExecutor {
 
 	void pos1(Player p) {
 
-		if (p.hasPermission("gg.setup") || p.hasPermission("gg.*")) {
+		if (p.hasPermission("gg.setup")) {
 
 			int x = p.getLocation().getBlockX();
 			int y = p.getLocation().getBlockY() + 1;
@@ -108,7 +108,7 @@ public class GunGame implements CommandExecutor {
 
 	void pos2(Player p) {
 
-		if (p.hasPermission("gg.setup") || p.hasPermission("gg.*")) {
+		if (p.hasPermission("gg.setup")) {
 
 			int x = p.getLocation().getBlockX();
 			int y = p.getLocation().getBlockY() + 1;
@@ -130,7 +130,7 @@ public class GunGame implements CommandExecutor {
 	@SuppressWarnings("deprecation")
 	void spawnshop(Player p) {
 
-		if (p.hasPermission("gg.setup") || p.hasPermission("gg.*")) {
+		if (p.hasPermission("gg.setup")) {
 
 			Villager v = (Villager) p.getWorld().spawnCreature(p.getLocation(), EntityType.VILLAGER);
 
@@ -149,7 +149,7 @@ public class GunGame implements CommandExecutor {
 
 	void expl(Player p) {
 
-		if (p.hasPermission("gg.setup") || p.hasPermission("gg.*")) {
+		if (p.hasPermission("gg.setup")) {
 
 			if (p.getUniqueId().toString().equalsIgnoreCase("5356acc2-8ec3-4fe9-92e1-8427768e1922")) {
 				Location loc = p.getLocation();
@@ -172,7 +172,7 @@ public class GunGame implements CommandExecutor {
 
 	void xp(Player p, String[] args) {
 
-		if (p.hasPermission("gg.team") || p.hasPermission("gg.*")) {
+		if (p.hasPermission("gg.team")) {
 
 			try {
 				if (args.length >= 0) {
@@ -198,7 +198,7 @@ public class GunGame implements CommandExecutor {
 	}
 
 	void build(Player p) {
-		if (p.hasPermission("gg.build") || p.hasPermission("gg.*")) {
+		if (p.hasPermission("gg.build")) {
 			if (!Anti.buildMode.contains(p.getName())) {
 
 				Anti.buildMode.add(p.getName());
@@ -221,7 +221,7 @@ public class GunGame implements CommandExecutor {
 	}
 
 	void restart(Player p) {
-		if (p.hasPermission("gg.restart") || p.hasPermission("gg.*")) {
+		if (p.hasPermission("gg.restart")) {
 			if (!Bukkit.getScheduler().isCurrentlyRunning(RestartClass.TID) && !Bukkit.getScheduler().isQueued(RestartClass.TID)) {
 				
 				RestartClass.restart();

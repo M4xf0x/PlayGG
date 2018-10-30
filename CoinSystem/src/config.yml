@@ -1,0 +1,10 @@
+Config:
+  prefix: '&6&lFreeBuild'
+  startValue: 1000
+  
+MySQL:
+  host: localhost
+  port: 3306
+  database: gungame
+  username: lol
+  password: lol

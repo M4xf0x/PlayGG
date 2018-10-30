@@ -1,0 +1,11 @@
+name: PlayCoinSystem
+version: 0.8
+author: M4Twaily
+main: de.m4twaily.cs.Main
+description: Money System for NSPlay
+
+commands:
+  money:
+    aliases: [coins, geld]
+  pay:
+    

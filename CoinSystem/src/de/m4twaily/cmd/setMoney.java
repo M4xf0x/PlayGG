@@ -4,14 +4,15 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import de.m4twaily.cs.Main;
-import de.m4twaily.mysql.Points;
+import de.m4twaily.mysql.CoinSystem;
 
 public class setMoney {
 
 	void setOwn(Player p, int amount) {
 		try {
-
-			Points.setMoney(p.getUniqueId(), amount);
+			CoinSystem cs = new CoinSystem();
+			
+			cs.setMoney(p.getUniqueId(), amount);
 
 			p.sendMessage(" ");
 			p.sendMessage(Main.prefix + "§eDein Geld wurde auf " + amount + "$ gesetzt");
@@ -26,8 +27,9 @@ public class setMoney {
 		try {
 
 			Player target = Bukkit.getPlayer(args[1]);
-
-			Points.setMoney(target.getUniqueId(), amount);
+			CoinSystem cs = new CoinSystem();
+			
+			cs.setMoney(target.getUniqueId(), amount);
 
 			p.sendMessage(" ");
 			p.sendMessage(Main.prefix + "§eGeld von " + target.getName() + " auf " + amount + "$ gesetzt");

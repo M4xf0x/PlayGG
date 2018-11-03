@@ -5,16 +5,18 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-import de.m4twaily.mysql.Points;
+import de.m4twaily.mysql.CoinSystem;
 
 public class Events implements Listener {
 
 	@EventHandler
 	public void onFirstJoin(PlayerJoinEvent e) {
 		Player p = e.getPlayer();
-
-		if (!Points.isUserExisting(p.getUniqueId())) {
-			Points.setFirstMoney(p.getUniqueId(), Main.main.getConfig().getInt("Config.startValue"));
+		CoinSystem cs = new CoinSystem();
+		
+		
+		if (!cs.isUserExisting(p.getUniqueId())) {
+			cs.setFirstMoney(p.getUniqueId(), Main.main.getConfig().getInt("Config.startValue"));
 		}
 
 	}

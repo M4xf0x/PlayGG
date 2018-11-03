@@ -4,17 +4,18 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import de.m4twaily.cs.Main;
-import de.m4twaily.mysql.Points;
+import de.m4twaily.mysql.CoinSystem;
 
 public class removeMoney {
 
 	void removeOwn(Player p, int amount) {
 		try {
-
-			Points.removeMoney(p.getUniqueId(), amount);
+			CoinSystem cs = new CoinSystem();
+			
+			cs.removeMoney(p.getUniqueId(), amount);
 
 			p.sendMessage(" ");
-			p.sendMessage(Main.prefix + "§eDein Geld wurde auf " + Points.getMoney(p.getUniqueId()) + "$ gesetzt");
+			p.sendMessage(Main.prefix + "§eDein Geld wurde auf " + cs.getMoney(p.getUniqueId()) + "$ gesetzt");
 			p.sendMessage(" ");
 
 		} catch (Exception e) {
@@ -26,17 +27,18 @@ public class removeMoney {
 		try {
 
 			Player target = Bukkit.getPlayer(args[1]);
-
-			Points.removeMoney(target.getUniqueId(), amount);
+			CoinSystem cs = new CoinSystem();
+			
+			cs.removeMoney(target.getUniqueId(), amount);
 
 			p.sendMessage(" ");
 			p.sendMessage(Main.prefix + "§eGeld von " + target.getName() + " auf "
-					+ Points.getMoney(target.getUniqueId()) + "$ gesetzt");
+					+ cs.getMoney(target.getUniqueId()) + "$ gesetzt");
 			p.sendMessage(" ");
 
 			target.sendMessage(" ");
 			target.sendMessage(
-					Main.prefix + "§eDein Geld wurde auf " + Points.getMoney(target.getUniqueId()) + "$ gesetzt");
+					Main.prefix + "§eDein Geld wurde auf " + cs.getMoney(target.getUniqueId()) + "$ gesetzt");
 			target.sendMessage(" ");
 
 		} catch (Exception e) {

@@ -5,9 +5,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
 
-public class Points {
+public class CoinSystem {
 
-	public static boolean isUserExisting(UUID uuid) {
+	/**
+	 * dont use this, only for System
+	 **/
+
+	public boolean isUserExisting(UUID uuid) {
 		try {
 			PreparedStatement ps = MySQL.getConnection().prepareStatement("SELECT Money FROM money WHERE UUID = ?");
 			ps.setString(1, uuid.toString());
@@ -21,7 +25,11 @@ public class Points {
 		return false;
 	}
 
-	public static Integer getMoney(UUID uuid) {
+	/**
+	 * getMoney returns Integer
+	 **/
+
+	public Integer getMoney(UUID uuid) {
 		try {
 
 			PreparedStatement ps = MySQL.getConnection().prepareStatement("SELECT Money FROM money WHERE UUID = ?");
@@ -40,7 +48,11 @@ public class Points {
 
 	}
 
-	public static void addMoney(UUID uuid, int Money) {
+	/**
+	 * addMoney
+	 **/
+
+	public void addMoney(UUID uuid, int value) {
 		int currentValue = getMoney(uuid);
 
 		try {
@@ -49,7 +61,7 @@ public class Points {
 				PreparedStatement ps = MySQL.getConnection()
 						.prepareStatement("UPDATE money SET Money = ? WHERE UUID = ?");
 
-				ps.setInt(1, currentValue + Money);
+				ps.setInt(1, currentValue + value);
 				ps.setString(2, uuid.toString());
 
 				ps.executeUpdate();
@@ -60,7 +72,7 @@ public class Points {
 						.prepareStatement("INSERT INTO money (UUID, Money) VALUES (?,?)");
 
 				ps.setString(1, uuid.toString());
-				ps.setInt(2, 0 + Money);
+				ps.setInt(2, 0 + value);
 
 				ps.executeUpdate();
 
@@ -71,7 +83,11 @@ public class Points {
 
 	}
 
-	public static void removeMoney(UUID uuid, int value) {
+	/**
+	 * removeMoney
+	 **/
+
+	public void removeMoney(UUID uuid, int value) {
 		int currentValue = getMoney(uuid);
 
 		try {
@@ -101,7 +117,11 @@ public class Points {
 		}
 	}
 
-	public static void setFirstMoney(UUID uuid, int value) {
+	/**
+	 * Achtung: nicht benutzen, ist im System selber gesetzt (Config.yml)
+	 **/
+
+	public void setFirstMoney(UUID uuid, int value) {
 		try {
 
 			PreparedStatement ps = MySQL.getConnection()
@@ -117,7 +137,11 @@ public class Points {
 		}
 	}
 
-	public static void setMoney(UUID uuid, int value) {
+	/**
+	 * setMoney
+	 **/
+
+	public void setMoney(UUID uuid, int value) {
 		try {
 			if (isUserExisting(uuid)) {
 

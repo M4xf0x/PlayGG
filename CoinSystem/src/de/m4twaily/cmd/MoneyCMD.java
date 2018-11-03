@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import de.m4twaily.cs.Main;
-import de.m4twaily.mysql.Points;
+import de.m4twaily.mysql.CoinSystem;
 
 public class MoneyCMD implements CommandExecutor {
 
@@ -17,10 +17,11 @@ public class MoneyCMD implements CommandExecutor {
 
 		if (sender instanceof Player) {
 			Player p = (Player) sender;
+			CoinSystem cs = new CoinSystem();
 
 			if (args.length == 0) {
 
-				get(p);
+				get(p, cs);
 
 			} else if (args[0].equalsIgnoreCase("set")) {
 				if (p.hasPermission("cs.admin")) {
@@ -121,11 +122,11 @@ public class MoneyCMD implements CommandExecutor {
 					@SuppressWarnings("deprecation")
 					OfflinePlayer target = Bukkit.getOfflinePlayer(args[0]);
 
-					if (Points.getMoney(target.getUniqueId()) != -1) {
+					if (cs.getMoney(target.getUniqueId()) != -1) {
 
 						p.sendMessage(" ");
 						p.sendMessage(Main.prefix + "§eGeld von " + target.getName() + ": "
-								+ Points.getMoney(target.getUniqueId()) + "$");
+								+ cs.getMoney(target.getUniqueId()) + "$");
 						p.sendMessage(" ");
 
 					} else {
@@ -145,10 +146,10 @@ public class MoneyCMD implements CommandExecutor {
 		return false;
 	}
 
-	void get(Player p) {
+	void get(Player p, CoinSystem cs) {
 
 		p.sendMessage(" ");
-		p.sendMessage(Main.prefix + "§eDein Geld: " + Points.getMoney(p.getUniqueId()) + "$");
+		p.sendMessage(Main.prefix + "§eDein Geld: " + cs.getMoney(p.getUniqueId()) + "$");
 		p.sendMessage(" ");
 
 	}

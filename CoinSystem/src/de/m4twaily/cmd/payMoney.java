@@ -4,7 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import de.m4twaily.cs.Main;
-import de.m4twaily.mysql.Points;
+import de.m4twaily.mysql.CoinSystem;
 
 public class payMoney {
 
@@ -12,12 +12,13 @@ public class payMoney {
 		try {
 
 			Player target = Bukkit.getPlayer(args[1]);
-			int i = Points.getMoney(p.getUniqueId());
+			CoinSystem cs = new CoinSystem();
+			int i = cs.getMoney(p.getUniqueId());
 
 			if (i - amount >= 0 && amount > 0) {
 
-				Points.removeMoney(p.getUniqueId(), amount);
-				Points.addMoney(target.getUniqueId(), amount);
+				cs.removeMoney(p.getUniqueId(), amount);
+				cs.addMoney(target.getUniqueId(), amount);
 
 				p.sendMessage(" ");
 				p.sendMessage(Main.prefix + "§eDu hast " + target.getName() + " " + amount + "$ überwiesen");
@@ -38,12 +39,13 @@ public class payMoney {
 		try {
 
 			Player target = Bukkit.getPlayer(args[0]);
-			int i = Points.getMoney(p.getUniqueId());
+			CoinSystem cs = new CoinSystem();
+			int i = cs.getMoney(p.getUniqueId());
 
 			if (i - amount >= 0 && amount > 0) {
 
-				Points.removeMoney(p.getUniqueId(), amount);
-				Points.addMoney(target.getUniqueId(), amount);
+				cs.removeMoney(p.getUniqueId(), amount);
+				cs.addMoney(target.getUniqueId(), amount);
 
 				p.sendMessage(" ");
 				p.sendMessage(Main.prefix + "§eDu hast " + target.getName() + " " + amount + "$ überwiesen");

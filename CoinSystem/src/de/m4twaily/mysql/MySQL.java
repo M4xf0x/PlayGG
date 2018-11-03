@@ -10,6 +10,10 @@ import de.m4twaily.cs.Main;
 
 public class MySQL {
 
+	/**
+	 * DO NOT use this class
+	 **/
+
 	public static String host = Main.main.getConfig().getString("MySQL.host");
 	public static String port = Main.main.getConfig().getString("MySQL.port");
 	public static String database = Main.main.getConfig().getString("MySQL.database");

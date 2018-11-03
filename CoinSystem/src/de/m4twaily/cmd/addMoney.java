@@ -4,17 +4,18 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import de.m4twaily.cs.Main;
-import de.m4twaily.mysql.Points;
+import de.m4twaily.mysql.CoinSystem;
 
 public class addMoney {
 
 	void addOwn(Player p, int amount) {
 		try {
-
-			Points.addMoney(p.getUniqueId(), amount);
+			CoinSystem cs = new CoinSystem();
+			
+			cs.addMoney(p.getUniqueId(), amount);
 
 			p.sendMessage(" ");
-			p.sendMessage(Main.prefix + "§eDein Geld wurde auf " + Points.getMoney(p.getUniqueId()) + "$ gesetzt");
+			p.sendMessage(Main.prefix + "§eDein Geld wurde auf " + cs.getMoney(p.getUniqueId()) + "$ gesetzt");
 			p.sendMessage(" ");
 
 		} catch (Exception e) {
@@ -24,19 +25,19 @@ public class addMoney {
 
 	void addOther(Player p, String[] args, int amount) {
 		try {
-
+			CoinSystem cs = new CoinSystem();
 			Player target = Bukkit.getPlayer(args[1]);
 
-			Points.addMoney(target.getUniqueId(), amount);
+			cs.addMoney(target.getUniqueId(), amount);
 
 			p.sendMessage(" ");
 			p.sendMessage(Main.prefix + "§eGeld von " + target.getName() + " auf "
-					+ Points.getMoney(target.getUniqueId()) + "$ gesetzt");
+					+ cs.getMoney(target.getUniqueId()) + "$ gesetzt");
 			p.sendMessage(" ");
 
 			target.sendMessage(" ");
 			target.sendMessage(
-					Main.prefix + "§eDein Geld wurde auf " + Points.getMoney(target.getUniqueId()) + "$ gesetzt");
+					Main.prefix + "§eDein Geld wurde auf " + cs.getMoney(target.getUniqueId()) + "$ gesetzt");
 			target.sendMessage(" ");
 
 		} catch (Exception e) {

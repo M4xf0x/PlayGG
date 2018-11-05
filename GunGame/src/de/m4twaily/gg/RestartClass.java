@@ -52,7 +52,7 @@ public class RestartClass {
 
 					for (Player all : Bukkit.getOnlinePlayers()) {
 						all.kickPlayer(
-								"   §c§lDer Server restartet \n \n            §7Er sollte in wenigen Minuten wieder erreichbar sein");
+								"\n  §8» §c§lDer Server restartet \n §8» §7Er sollte in wenigen Minuten wieder erreichbar sein \n ");
 					}
 
 					Bukkit.shutdown();

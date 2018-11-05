@@ -166,13 +166,13 @@ public class AngelEvents implements Listener {
 						p.sendMessage(" ");
 						p.sendMessage(Main.prefix + "§7Kaufe dir eine Angel, um zu angeln");
 						p.sendMessage(" ");
-						
+
 					}
 				} else {
 					p.sendMessage(" ");
 					p.sendMessage(Main.prefix + "§7Kaufe dir eine Angel, um zu angeln");
 					p.sendMessage(" ");
-					
+
 				}
 			}
 		}

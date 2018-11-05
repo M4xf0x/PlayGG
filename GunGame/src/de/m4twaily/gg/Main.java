@@ -18,6 +18,7 @@ import de.m4twaily.events.JoinQuit;
 import de.m4twaily.events.MoveProtection;
 import de.m4twaily.events.SkullEvents;
 import de.m4twaily.mysql.MySQL;
+import de.m4twaily.rdevents.Timer;
 import de.m4twaily.shop.AngelEvents;
 import de.m4twaily.shop.GunEvents;
 import de.m4twaily.shop.ShopEvents;
@@ -46,6 +47,9 @@ public class Main extends JavaPlugin {
 		pm.registerEvents(new SkullEvents(), this);
 		this.getCommand("gungame").setExecutor(new GunGame());
 		this.getCommand("stats").setExecutor(new StatsCMD());
+		
+		new RestartClass().startTimer();
+		new Timer();
 	}
 
 	public void loadConfig() {

@@ -1,6 +1,7 @@
 package de.m4twaily.commands;
 
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -30,19 +31,26 @@ public class StatsCMD implements CommandExecutor {
 
 			} else if (args.length == 1) {
 				try {
-					Player target = Bukkit.getPlayer(args[0]);
+					@SuppressWarnings("deprecation")
+					OfflinePlayer target = Bukkit.getOfflinePlayer(args[0]);
 
-					double kd = (double) Points.getPoints(target.getUniqueId())
-							/ (double) Points.getDeaths(target.getUniqueId());
-					kd = (double) Math.round(kd * 100) / 100;
+					if (Points.getDeaths(target.getUniqueId()) != -1) {
 
-					p.sendMessage(" ");
-					p.sendMessage(" §8» §6§lStats von " + target.getName() + ":");
-					p.sendMessage("   §8» §eKills: " + Points.getPoints(target.getUniqueId()));
-					p.sendMessage("   §8» §eTode: " + Points.getDeaths(target.getUniqueId()));
-					p.sendMessage("   §8» §eKD: " + kd);
-					p.sendMessage(" ");
+						double kd = (double) Points.getPoints(target.getUniqueId())
+								/ (double) Points.getDeaths(target.getUniqueId());
+						kd = (double) Math.round(kd * 100) / 100;
 
+						p.sendMessage(" ");
+						p.sendMessage(" §8» §6§lStats von " + target.getName() + ":");
+						p.sendMessage("   §8» §eKills: " + Points.getPoints(target.getUniqueId()));
+						p.sendMessage("   §8» §eTode: " + Points.getDeaths(target.getUniqueId()));
+						p.sendMessage("   §8» §eKD: " + kd);
+						p.sendMessage(" ");
+					} else {
+						p.sendMessage(" ");
+						p.sendMessage(" §8» §c§lDer Spieler " + target.getName() + " war noch nicht auf dem Server!");
+						p.sendMessage(" ");
+					}
 				} catch (Exception e) {
 					help(p);
 				}

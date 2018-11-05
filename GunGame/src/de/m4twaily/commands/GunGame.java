@@ -6,6 +6,7 @@ import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
@@ -39,6 +40,9 @@ public class GunGame implements CommandExecutor {
 
 				} else if (args[0].equalsIgnoreCase("spawnshop")) {
 					spawnshop(p);
+
+				} else if (args[0].equalsIgnoreCase("killshop")) {
+					killShop(p);
 
 				} else if (args[0].equalsIgnoreCase("expl")) {
 					expl(p);
@@ -139,12 +143,26 @@ public class GunGame implements CommandExecutor {
 			v.setCustomName("§6§lHändler");
 			v.setCustomNameVisible(true);
 			v.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 360000, 10, false, false));
+			v.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, Integer.MAX_VALUE, 10, false, false));
+			v.addPotionEffect(new PotionEffect(PotionEffectType.HEALTH_BOOST, Integer.MAX_VALUE, 1000, false, false));
 
 			p.sendMessage(" ");
 			p.sendMessage(Main.prefix + "§7Shop Villager wurde erfolgreich gesetzt.");
 			p.sendMessage(" ");
 
 		}
+	}
+
+	void killShop(Player p) {
+		for (Entity e : p.getWorld().getEntities()) {
+			if (e.getType() == EntityType.VILLAGER) {
+				e.remove();
+			}
+		}
+
+		p.sendMessage(" ");
+		p.sendMessage(Main.prefix + "§7Shop Villager erfolgreich gecleart.");
+		p.sendMessage(" ");
 	}
 
 	void expl(Player p) {
@@ -222,10 +240,11 @@ public class GunGame implements CommandExecutor {
 
 	void restart(Player p) {
 		if (p.hasPermission("gg.restart")) {
-			if (!Bukkit.getScheduler().isCurrentlyRunning(RestartClass.TID) && !Bukkit.getScheduler().isQueued(RestartClass.TID)) {
-				
+			if (!Bukkit.getScheduler().isCurrentlyRunning(RestartClass.TID)
+					&& !Bukkit.getScheduler().isQueued(RestartClass.TID)) {
+
 				RestartClass.restart();
-				
+
 			}
 
 		}
@@ -238,6 +257,7 @@ public class GunGame implements CommandExecutor {
 		p.sendMessage("   §8» §e/GunGame setspawn");
 		p.sendMessage("   §8» §e/GunGame pos1 / 2");
 		p.sendMessage("   §8» §e/GunGame spawnshop");
+		p.sendMessage("   §8» §e/GunGame killshop");
 		p.sendMessage("   §8» §e/GunGame build");
 		p.sendMessage("   §8» §e/GunGame xp");
 		p.sendMessage(" ");

@@ -16,11 +16,12 @@ public class BounceEvents implements Listener {
 	public void onMoveBounce(PlayerMoveEvent e) {
 		Player p = e.getPlayer();
 		Location loc = p.getLocation();
-		Vector v = new Vector(0, 1, 0);
 
 		if (!p.isSneaking()) {
 			if (loc.add(0, -1, 0).getBlock().getType() == Material.WOOL) {
 				if (loc.add(0, -1, 0).getBlock().getType() == Material.GOLD_BLOCK) {
+					Vector v = p.getLocation().getDirection().multiply(0.1).setY(1);
+
 					p.setVelocity(v);
 
 				}

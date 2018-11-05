@@ -50,6 +50,8 @@ public class Main extends JavaPlugin {
 		
 		new RestartClass().startTimer();
 		new Timer();
+		
+		Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "difficulty 0");
 	}
 
 	public void loadConfig() {

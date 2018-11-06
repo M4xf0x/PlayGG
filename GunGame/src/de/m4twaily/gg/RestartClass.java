@@ -23,7 +23,7 @@ public class RestartClass {
 				System.out.println("Asking if its 0");
 				System.out.println(" ");
 
-				if (c.getTime().getHours() == 18) {
+				if (c.getTime().getHours() == 0) {
 
 					restart();
 					System.out.println(" ");

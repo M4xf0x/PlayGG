@@ -29,7 +29,7 @@ public class DeathListener implements Listener {
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onDeathKnockit(PlayerDeathEvent e) {
-		
+
 		final Player p = e.getEntity();
 		Player h = e.getEntity().getKiller();
 
@@ -41,8 +41,8 @@ public class DeathListener implements Listener {
 
 		if (h != null) {
 			if (p != h) {
-				p.sendMessage("§cKilled by " + h.getName());
-				h.sendMessage("§aKilled" + p.getName());
+				p.sendMessage(Main.prefix + "§c§lKill §8« §c" + h.getName());
+				h.sendMessage(Main.prefix + "§a§lKill §8» §a" + p.getName());
 				h.giveExpLevels(1);
 
 				Points.addCoins(h.getUniqueId(), 1, 0);

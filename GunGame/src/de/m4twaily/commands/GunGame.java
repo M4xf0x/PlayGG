@@ -154,15 +154,17 @@ public class GunGame implements CommandExecutor {
 	}
 
 	void killShop(Player p) {
-		for (Entity e : p.getWorld().getEntities()) {
-			if (e.getType() == EntityType.VILLAGER) {
-				e.remove();
+		if (p.hasPermission("gg.setup")) {
+			for (Entity e : p.getWorld().getEntities()) {
+				if (e.getType() == EntityType.VILLAGER) {
+					e.remove();
+				}
 			}
-		}
 
-		p.sendMessage(" ");
-		p.sendMessage(Main.prefix + "§7Shop Villager erfolgreich gecleart.");
-		p.sendMessage(" ");
+			p.sendMessage(" ");
+			p.sendMessage(Main.prefix + "§7Shop Villager erfolgreich gecleart.");
+			p.sendMessage(" ");
+		}
 	}
 
 	void expl(Player p) {

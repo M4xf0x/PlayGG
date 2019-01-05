@@ -104,10 +104,11 @@ public class Anti implements Listener {
 
 	@EventHandler
 	public void onEntSpawn(EntitySpawnEvent e) {
-		if (e.getEntityType() != EntityType.ARMOR_STAND || e.getEntityType() != EntityType.VILLAGER) {
+		if (e.getEntityType() == EntityType.ARMOR_STAND || e.getEntityType() == EntityType.VILLAGER || e.getEntityType() == EntityType.PRIMED_TNT) {
 
+		} else {
 			e.setCancelled(true);
-
+			
 		}
 	}
 

@@ -162,7 +162,7 @@ public class ShopEvents implements Listener {
 						e.setCancelled(true);
 					}
 
-				} else if (p.getGameMode() == GameMode.CREATIVE && p.hasPermission("eg.build")) {
+				} else if (p.getGameMode() == GameMode.CREATIVE && p.hasPermission("gg.build")) {
 
 				} else {
 					e.setCancelled(true);

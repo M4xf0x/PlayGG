@@ -101,7 +101,7 @@ public class DeathListener implements Listener {
 
 					ShopEvents.feather.remove(p.getName());
 				}
-
+				
 				ScoreboardNew.doScoreboard(p);
 				giveArmyClass.giveArmor(p);
 

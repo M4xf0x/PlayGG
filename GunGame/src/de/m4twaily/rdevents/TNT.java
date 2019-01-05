@@ -9,11 +9,12 @@ import org.bukkit.util.Vector;
 public class TNT {
 
 	static void all() {
-		for (Player all : Bukkit.getOnlinePlayers()) {
-
-			Bukkit.broadcastMessage(" ");
-			Bukkit.broadcastMessage("§6§lRandomEvent §8» §eTNT");
-			Bukkit.broadcastMessage(" ");	
+		
+		Bukkit.broadcastMessage(" ");
+		Bukkit.broadcastMessage("§6§lRandomEvent §8» §eTNT");
+		Bukkit.broadcastMessage(" ");
+		
+		for (Player all : Bukkit.getOnlinePlayers()) {	
 			
 			Location loc1 = all.getLocation().add(new Vector(3, 10, 0));
 			Location loc2 = all.getLocation().add(new Vector(0, 10, 3));

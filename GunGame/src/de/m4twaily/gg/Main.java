@@ -48,7 +48,7 @@ public class Main extends JavaPlugin {
 		this.getCommand("gungame").setExecutor(new GunGame());
 		this.getCommand("stats").setExecutor(new StatsCMD());
 		
-		new RestartClass().startTimer();
+//		new RestartClass().startTimer();
 		new Timer();
 		
 	}

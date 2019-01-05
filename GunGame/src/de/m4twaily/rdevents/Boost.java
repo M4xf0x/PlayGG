@@ -7,11 +7,12 @@ import org.bukkit.util.Vector;
 public class Boost {
 
 	static void all() {
+		
+		Bukkit.broadcastMessage(" ");
+		Bukkit.broadcastMessage("§6§lRandomEvent §8» §eJumpBoost");
+		Bukkit.broadcastMessage(" ");
+		
 		for (Player all : Bukkit.getOnlinePlayers()) {
-
-			Bukkit.broadcastMessage(" ");
-			Bukkit.broadcastMessage("§6§lRandomEvent §8» §eJumpBoost");
-			Bukkit.broadcastMessage(" ");
 
 			Vector v = new Vector(1, 5, 0);
 

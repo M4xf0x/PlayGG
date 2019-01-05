@@ -10,6 +10,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
+import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.player.PlayerAchievementAwardedEvent;
@@ -99,6 +100,15 @@ public class Anti implements Listener {
 			e.blockList().clear();
 		}
 
+	}
+
+	@EventHandler
+	public void onEntSpawn(EntitySpawnEvent e) {
+		if (e.getEntityType() != EntityType.ARMOR_STAND || e.getEntityType() != EntityType.VILLAGER) {
+
+			e.setCancelled(true);
+
+		}
 	}
 
 }

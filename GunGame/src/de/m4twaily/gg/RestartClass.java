@@ -78,11 +78,6 @@ public class RestartClass {
 
 					Bukkit.getScheduler().cancelTask(TID);
 
-					for (Player all : Bukkit.getOnlinePlayers()) {
-						all.kickPlayer(
-								"\n §8» §c§lDer Server restartet \n §8» §7Er sollte in wenigen Minuten wieder erreichbar sein \n ");
-					}
-
 					Bukkit.reload();
 				}
 

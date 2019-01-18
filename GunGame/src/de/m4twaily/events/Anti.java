@@ -116,7 +116,6 @@ public class Anti implements Listener {
 			
 		} else {
 			e.setCancelled(true);
-
 		}
 	}
 

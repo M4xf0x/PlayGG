@@ -78,7 +78,7 @@ public class RestartClass {
 
 					Bukkit.getScheduler().cancelTask(TID);
 
-					Bukkit.reload();
+					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "rl");
 				}
 
 				idx--;

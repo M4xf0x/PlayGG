@@ -55,7 +55,10 @@ public class GunGame implements CommandExecutor {
 
 				} else if (args[0].equalsIgnoreCase("restart")) {
 					restart(p);
-
+					
+				} else if (args[0].equalsIgnoreCase("reload")) {
+					reload(p);	
+				
 				} else {
 					help(p);
 				}
@@ -246,6 +249,18 @@ public class GunGame implements CommandExecutor {
 					&& !Bukkit.getScheduler().isQueued(RestartClass.TID)) {
 
 				RestartClass.restart();
+
+			}
+
+		}
+	}
+	
+	void reload(Player p) {
+		if (p.hasPermission("gg.reload")) {
+			if (!Bukkit.getScheduler().isCurrentlyRunning(RestartClass.TID)
+					&& !Bukkit.getScheduler().isQueued(RestartClass.TID)) {
+
+				RestartClass.reload();
 
 			}
 

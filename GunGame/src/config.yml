@@ -1,6 +1,6 @@
 Config:
   world: world
-  prefix: '&2&lGunGame'
+  prefix: '&6&lGunGame'
   
 Spawn:
   x: 1284

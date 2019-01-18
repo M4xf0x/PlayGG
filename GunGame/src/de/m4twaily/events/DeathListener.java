@@ -93,7 +93,7 @@ public class DeathListener implements Listener {
 
 					if (p.getLevel() == 0) {
 						p.setLevel(1);
-						ScoreboardNew.doScoreboard(p);
+
 					}
 
 				} else {

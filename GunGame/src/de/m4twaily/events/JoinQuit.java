@@ -87,7 +87,7 @@ public class JoinQuit implements Listener {
 			e.setQuitMessage(s + "§6Premium §8| §6" + p.getName());
 
 		} else {
-			e.setQuitMessage(s + "§7" + p.getName() + " §7ist §cgeleaved!");
+			e.setQuitMessage(s + "§7" + p.getName());
 		}
 	}
 

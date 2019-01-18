@@ -24,10 +24,10 @@ public class RestartClass {
 				System.out.println(" ");
 
 				if (c.getTime().getHours() == 0) {
-
-					restart();
+					
+					reload();
 					System.out.println(" ");
-					System.out.println("Server restart by PlayGunGame");
+					System.out.println("Server reload by ggGunGame");
 					System.out.println(" ");
 				}
 
@@ -44,7 +44,7 @@ public class RestartClass {
 			public void run() {
 				if (idx > 0) {
 
-					Bukkit.broadcastMessage(Main.prefix + "§c§lDer Server restartet in " + idx + " Sekunden");
+					Bukkit.broadcastMessage(Main.prefix + "§7Der Server restartet in " + idx + " Sekunden");
 
 				} else if (idx == 0) {
 
@@ -60,6 +60,33 @@ public class RestartClass {
 				}
 				idx--;
 
+			}
+		}, 0L, 20L);
+	}
+
+	public static void reload() {
+
+		TID = Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.main, new Runnable() {
+			int idx = 10;
+
+			public void run() {
+				if (idx > 0) {
+
+					Bukkit.broadcastMessage(Main.prefix + "§c§lDer Server reloaded in " + idx + " Sekunden");
+
+				} else if (idx == 0) {
+
+					Bukkit.getScheduler().cancelTask(TID);
+
+					for (Player all : Bukkit.getOnlinePlayers()) {
+						all.kickPlayer(
+								"\n §8» §c§lDer Server restartet \n §8» §7Er sollte in wenigen Minuten wieder erreichbar sein \n ");
+					}
+
+					Bukkit.reload();
+				}
+
+				idx--;
 			}
 		}, 0L, 20L);
 	}

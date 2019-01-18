@@ -13,34 +13,36 @@ public class ScoreboardNew {
 
 	@SuppressWarnings("deprecation")
 	public static void doScoreboard(Player p) {
+		System.out.println("[GunGame] ScoreboardNew - doScoreboard");
+		
 		Scoreboard board = Bukkit.getScoreboardManager().getNewScoreboard();
 		Objective obj = board.registerNewObjective("aaa", "bbb");
 		obj.setDisplaySlot(org.bukkit.scoreboard.DisplaySlot.SIDEBAR);
-		obj.setDisplayName("§2§lGunGame");
+		obj.setDisplayName("§6§l   GunGame ");
 
 		Score spacer01 = obj.getScore(" ");
 		spacer01.setScore(13);
-		Score level_name = obj.getScore("§6§lRang");
+		Score level_name = obj.getScore("§eRang");
 		level_name.setScore(12);
-		Score rang_name = obj.getScore("" + PermissionsEx.getUser(p).getGroups()[0].getPrefix().replaceAll("&", "§"));
+		Score rang_name = obj.getScore("§8 » " + PermissionsEx.getUser(p).getGroups()[0].getPrefix().replaceAll("&", "§"));
 		rang_name.setScore(11);
 		Score spacer02 = obj.getScore("  ");
 		spacer02.setScore(10);
-		Score level = obj.getScore("§6§lLevel");
+		Score level = obj.getScore("§eLevel");
 		level.setScore(9);
-		Score coins = obj.getScore(" §a§l" + p.getLevel());
+		Score coins = obj.getScore("§8 »§7 " + p.getLevel());
 		coins.setScore(8);
 		Score spacer03 = obj.getScore("   ");
 		spacer03.setScore(7);
-		Score stats_name = obj.getScore("§6§lStats");
+		Score stats_name = obj.getScore("§eStats");
 		stats_name.setScore(3);
-		Score stats = obj.getScore("§a§l/stats ");
+		Score stats = obj.getScore("§8 » §7/stats ");
 		stats.setScore(2);
 		Score spacer04 = obj.getScore("    ");
 		spacer04.setScore(4);
-		Score online_name = obj.getScore("§6§lOnline");
+		Score online_name = obj.getScore("§eOnline");
 		online_name.setScore(6);
-		Score online = obj.getScore("§a§l " + Bukkit.getServer().getOnlinePlayers().size());
+		Score online = obj.getScore("§8 » §7" + Bukkit.getServer().getOnlinePlayers().size());
 		online.setScore(5);
 		Score spacer05 = obj.getScore("     ");
 		spacer05.setScore(1);

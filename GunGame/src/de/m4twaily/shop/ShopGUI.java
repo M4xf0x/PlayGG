@@ -10,64 +10,69 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import de.m4twaily.gg.Main;
+
 public class ShopGUI {
 
 	@SuppressWarnings("deprecation")
 	public static void createGUI(Player p) {
 
-		Inventory inv = Bukkit.createInventory(null, 9 * 3, "§6§lSHOP");
+		if (p.getWorld() == Bukkit.getWorld(Main.main.getConfig().getString("Config.world"))) {
 
-		ItemStack GrayPaneItemStack = new ItemStack(Material.STAINED_GLASS_PANE, 1, DyeColor.GRAY.getData());
-		ItemMeta GrayPaneMeta = GrayPaneItemStack.getItemMeta();
-		GrayPaneMeta.setDisplayName("§c ");
+			Inventory inv = Bukkit.createInventory(null, 9 * 3, "§6§lSHOP");
 
-		GrayPaneItemStack.setItemMeta(GrayPaneMeta);
-		inv.setItem(22, GrayPaneItemStack);
-		for (int o = 0; o != 27; o++) {
-			inv.setItem(o, GrayPaneItemStack);
+			ItemStack GrayPaneItemStack = new ItemStack(Material.STAINED_GLASS_PANE, 1, DyeColor.GRAY.getData());
+			ItemMeta GrayPaneMeta = GrayPaneItemStack.getItemMeta();
+			GrayPaneMeta.setDisplayName("§c ");
 
-			// Angel
-			ItemStack i = new ItemStack(Material.FISHING_ROD, 1);
-			ItemMeta met = i.getItemMeta();
-			ArrayList<String> Angellore = new ArrayList<String>();
+			GrayPaneItemStack.setItemMeta(GrayPaneMeta);
+			inv.setItem(22, GrayPaneItemStack);
+			for (int o = 0; o != 27; o++) {
+				inv.setItem(o, GrayPaneItemStack);
 
-			met.setDisplayName("§c§lAngel");
-			Angellore.add("§7§l5 Level");
-			met.setLore(Angellore);
-			i.setItemMeta(met);
-			inv.setItem(16, i);
+				// Angel
+				ItemStack i = new ItemStack(Material.FISHING_ROD, 1);
+				ItemMeta met = i.getItemMeta();
+				ArrayList<String> Angellore = new ArrayList<String>();
 
-			// Feather
-			ItemStack iiii = new ItemStack(Material.FEATHER, 1);
-			ItemMeta FeatherMeta = iiii.getItemMeta();
-			ArrayList<String> Featherlore = new ArrayList<String>();
+				met.setDisplayName("§c§lAngel");
+				Angellore.add("§7§l5 Level");
+				met.setLore(Angellore);
+				i.setItemMeta(met);
+				inv.setItem(16, i);
 
-			Featherlore.add("§7§l15 Level");
-			FeatherMeta.setLore(Featherlore);
-			FeatherMeta.setDisplayName("§9§lRettungs-Feder");
-			iiii.setItemMeta(FeatherMeta);
-			inv.setItem(10, iiii);
+				// Feather
+				ItemStack iiii = new ItemStack(Material.FEATHER, 1);
+				ItemMeta FeatherMeta = iiii.getItemMeta();
+				ArrayList<String> Featherlore = new ArrayList<String>();
 
-			// Hoe
-			ItemStack HoeItemStack = new ItemStack(Material.GOLD_HOE, 1);
-			ItemMeta HoeMeta = HoeItemStack.getItemMeta();
-			ArrayList<String> Hoelore = new ArrayList<String>();
+				Featherlore.add("§7§l15 Level");
+				FeatherMeta.setLore(Featherlore);
+				FeatherMeta.setDisplayName("§9§lRettungs-Feder");
+				iiii.setItemMeta(FeatherMeta);
+				inv.setItem(10, iiii);
 
-			HoeMeta.setDisplayName("§6§lBooster-GUN");
-			Hoelore.add("§7§l10 Level");
-			HoeMeta.setLore(Hoelore);
-			HoeItemStack.setItemMeta(HoeMeta);
-			inv.setItem(13, HoeItemStack);
+				// Hoe
+				ItemStack HoeItemStack = new ItemStack(Material.GOLD_HOE, 1);
+				ItemMeta HoeMeta = HoeItemStack.getItemMeta();
+				ArrayList<String> Hoelore = new ArrayList<String>();
 
-			// by M4xf0x
-			ItemStack item7 = new ItemStack(Material.STAINED_GLASS_PANE, 1, DyeColor.GRAY.getData());
-			ItemMeta Meta7 = item7.getItemMeta();
-			Meta7.setDisplayName("§8§lby M4xf0x");
-			item7.setItemMeta(Meta7);
-			inv.setItem(26, item7);
+				HoeMeta.setDisplayName("§6§lBooster-GUN");
+				Hoelore.add("§7§l10 Level");
+				HoeMeta.setLore(Hoelore);
+				HoeItemStack.setItemMeta(HoeMeta);
+				inv.setItem(13, HoeItemStack);
 
-			p.openInventory(inv);
+				// by M4xf0x
+				ItemStack item7 = new ItemStack(Material.STAINED_GLASS_PANE, 1, DyeColor.GRAY.getData());
+				ItemMeta Meta7 = item7.getItemMeta();
+				Meta7.setDisplayName("§8§lby M4xf0x");
+				item7.setItemMeta(Meta7);
+				inv.setItem(26, item7);
 
+				p.openInventory(inv);
+
+			}
 		}
 	}
 }

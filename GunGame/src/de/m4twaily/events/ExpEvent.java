@@ -15,15 +15,19 @@ public class ExpEvent implements Listener {
 
 	@EventHandler
 	public void onLvlChange(PlayerLevelChangeEvent e) {
-		Player p = e.getPlayer();
 
-		ScoreboardNew.doScoreboard(p);
-		giveArmyClass.giveArmor(p);
-		
-		p.playSound(p.getLocation(), Sound.SUCCESSFUL_HIT, 1, 1);
+		if (e.getPlayer().getWorld() == Bukkit.getWorld(Main.main.getConfig().getString("Config.world"))) {
 
-		if (p.getLevel() == 100) {
-			Bukkit.broadcastMessage(Main.prefix + "§9§l" + p.getName() + " §6§lhat Level 100 erreicht!");
+			Player p = e.getPlayer();
+
+			ScoreboardNew.doScoreboard(p);
+			giveArmyClass.giveArmor(p);
+
+			p.playSound(p.getLocation(), Sound.SUCCESSFUL_HIT, 1, 1);
+
+			if (p.getLevel() == 100) {
+				Bukkit.broadcastMessage(Main.prefix + "§9§l" + p.getName() + " §6§lhat Level 100 erreicht!");
+			}
 		}
 	}
 }

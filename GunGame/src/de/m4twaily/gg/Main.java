@@ -14,7 +14,6 @@ import de.m4twaily.events.BounceEvents;
 import de.m4twaily.events.DamageProtectionEvent;
 import de.m4twaily.events.DeathListener;
 import de.m4twaily.events.ExpEvent;
-import de.m4twaily.events.JoinQuit;
 import de.m4twaily.events.MoveProtection;
 import de.m4twaily.events.SkullEvents;
 import de.m4twaily.mysql.MySQL;
@@ -35,7 +34,6 @@ public class Main extends JavaPlugin {
 		PluginManager pm = Bukkit.getPluginManager();
 
 		pm.registerEvents(new DeathListener(), this);
-		pm.registerEvents(new JoinQuit(), this);
 		pm.registerEvents(new Anti(), this);
 		pm.registerEvents(new ExpEvent(), this);
 		pm.registerEvents(new MoveProtection(), this);

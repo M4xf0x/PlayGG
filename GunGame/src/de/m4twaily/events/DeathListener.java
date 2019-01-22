@@ -30,82 +30,90 @@ public class DeathListener implements Listener {
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onDeathKnockit(PlayerDeathEvent e) {
 
-		final Player p = e.getEntity();
-		Player h = e.getEntity().getKiller();
+		if (e.getEntity().getWorld() == Bukkit.getWorld(Main.main.getConfig().getString("Config.world"))
+				|| e.getEntity().getKiller().getWorld() == Bukkit
+						.getWorld(Main.main.getConfig().getString("Config.world"))) {
 
-		Points.addCoins(p.getUniqueId(), 0, 1);
+			final Player p = e.getEntity();
+			Player h = e.getEntity().getKiller();
 
-		lvl.put(p.getName(), p.getLevel());
+			Points.addCoins(p.getUniqueId(), 0, 1);
 
-		e.getDrops().clear();
+			lvl.put(p.getName(), p.getLevel());
 
-		if (h != null) {
-			if (p != h) {
-				p.sendMessage(Main.prefix + "§c§lKill §8« §c" + h.getName());
-				h.sendMessage(Main.prefix + "§a§lKill §8» §a" + p.getName());
-				h.giveExpLevels(1);
+			e.getDrops().clear();
 
-				Points.addCoins(h.getUniqueId(), 1, 0);
+			if (h != null) {
+				if (p != h) {
+					p.sendMessage(Main.prefix + "§c§lKill §8« §c" + h.getName());
+					h.sendMessage(Main.prefix + "§a§lKill §8» §a" + p.getName());
+					h.giveExpLevels(1);
 
-				h.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 20, 20));
+					Points.addCoins(h.getUniqueId(), 1, 0);
 
+					h.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 20, 20));
+
+				}
 			}
+			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.main, new Runnable() {
+
+				@Override
+				public void run() {
+					p.spigot().respawn();
+
+				}
+			}, 5);
+
+			e.setDeathMessage(null);
 		}
-		Bukkit.getScheduler().scheduleSyncDelayedTask(Main.main, new Runnable() {
-
-			@Override
-			public void run() {
-				p.spigot().respawn();
-
-			}
-		}, 5);
-
-		e.setDeathMessage(null);
-
 	}
 
 	@EventHandler
 	public void onRespawnSendChest(PlayerRespawnEvent e) {
-		final Player p = e.getPlayer();
-		int x = Main.main.getConfig().getInt("Spawn.x");
-		int y = Main.main.getConfig().getInt("Spawn.y");
-		int z = Main.main.getConfig().getInt("Spawn.z");
-		World w = Bukkit.getWorld(Main.main.getConfig().getString("Config.world"));
-		final Location loc = new Location(w, x, y, z);
 
-		e.setRespawnLocation(loc);
+		if (e.getPlayer().getWorld() == Bukkit.getWorld(Main.main.getConfig().getString("Config.world"))) {
 
-		Bukkit.getScheduler().scheduleSyncDelayedTask(Main.main, new Runnable() {
+			final Player p = e.getPlayer();
+			int x = Main.main.getConfig().getInt("Spawn.x");
+			int y = Main.main.getConfig().getInt("Spawn.y");
+			int z = Main.main.getConfig().getInt("Spawn.z");
+			World w = Bukkit.getWorld(Main.main.getConfig().getString("Config.world"));
+			final Location loc = new Location(w, x, y, z);
 
-			@Override
-			public void run() {
+			e.setRespawnLocation(loc);
 
-				ItemStack ChestItemStack = new ItemStack(Material.CHEST, 1);
-				ItemMeta ChestMeta = ChestItemStack.getItemMeta();
+			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.main, new Runnable() {
 
-				ChestMeta.setDisplayName("§6§lSHOP");
-				ChestItemStack.setItemMeta(ChestMeta);
-				p.getInventory().setItem(8, ChestItemStack);
+				@Override
+				public void run() {
 
-				if (!ShopEvents.feather.contains(p.getName())) {
+					ItemStack ChestItemStack = new ItemStack(Material.CHEST, 1);
+					ItemMeta ChestMeta = ChestItemStack.getItemMeta();
 
-					p.setLevel(lvl.get(p.getName()) / 2);
+					ChestMeta.setDisplayName("§6§lSHOP");
+					ChestItemStack.setItemMeta(ChestMeta);
+					p.getInventory().setItem(8, ChestItemStack);
 
-					if (p.getLevel() == 0) {
-						p.setLevel(1);
+					if (!ShopEvents.feather.contains(p.getName())) {
 
+						p.setLevel(lvl.get(p.getName()) / 2);
+
+						if (p.getLevel() == 0) {
+							p.setLevel(1);
+
+						}
+
+					} else {
+						p.setLevel(lvl.get(p.getName()));
+
+						ShopEvents.feather.remove(p.getName());
 					}
 
-				} else {
-					p.setLevel(lvl.get(p.getName()));
+					ScoreboardNew.doScoreboard(p);
+					giveArmyClass.giveArmor(p);
 
-					ShopEvents.feather.remove(p.getName());
 				}
-				
-				ScoreboardNew.doScoreboard(p);
-				giveArmyClass.giveArmor(p);
-
-			}
-		}, 5);
+			}, 5);
+		}
 	}
 }

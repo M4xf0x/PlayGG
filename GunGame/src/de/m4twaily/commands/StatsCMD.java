@@ -7,6 +7,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import de.m4twaily.gg.Main;
 import de.m4twaily.mysql.Points;
 
 public class StatsCMD implements CommandExecutor {
@@ -17,48 +18,51 @@ public class StatsCMD implements CommandExecutor {
 		if (sender instanceof Player) {
 			Player p = (Player) sender;
 
-			if (args.length == 0) {
+			if (p.getWorld() == Bukkit.getWorld(Main.main.getConfig().getString("Config.world"))) {
 
-				double kd = (double) Points.getPoints(p.getUniqueId()) / (double) Points.getDeaths(p.getUniqueId());
-				kd = (double) Math.round(kd * 100) / 100;
+				if (args.length == 0) {
 
-				p.sendMessage(" ");
-				p.sendMessage(" §8» §6§lStats:");
-				p.sendMessage("   §8» §eKills: " + Points.getPoints(p.getUniqueId()));
-				p.sendMessage("   §8» §eTode: " + Points.getDeaths(p.getUniqueId()));
-				p.sendMessage("   §8» §eKD: " + kd);
-				p.sendMessage(" ");
+					double kd = (double) Points.getPoints(p.getUniqueId()) / (double) Points.getDeaths(p.getUniqueId());
+					kd = (double) Math.round(kd * 100) / 100;
 
-			} else if (args.length == 1) {
-				try {
-					@SuppressWarnings("deprecation")
-					OfflinePlayer target = Bukkit.getOfflinePlayer(args[0]);
+					p.sendMessage(" ");
+					p.sendMessage(" §8» §6§lStats:");
+					p.sendMessage("   §8» §eKills: " + Points.getPoints(p.getUniqueId()));
+					p.sendMessage("   §8» §eTode: " + Points.getDeaths(p.getUniqueId()));
+					p.sendMessage("   §8» §eKD: " + kd);
+					p.sendMessage(" ");
 
-					if (Points.getDeaths(target.getUniqueId()) != -1) {
+				} else if (args.length == 1) {
+					try {
+						@SuppressWarnings("deprecation")
+						OfflinePlayer target = Bukkit.getOfflinePlayer(args[0]);
 
-						double kd = (double) Points.getPoints(target.getUniqueId())
-								/ (double) Points.getDeaths(target.getUniqueId());
-						kd = (double) Math.round(kd * 100) / 100;
+						if (Points.getDeaths(target.getUniqueId()) != -1) {
 
-						p.sendMessage(" ");
-						p.sendMessage(" §8» §6§lStats von " + target.getName() + ":");
-						p.sendMessage("   §8» §eKills: " + Points.getPoints(target.getUniqueId()));
-						p.sendMessage("   §8» §eTode: " + Points.getDeaths(target.getUniqueId()));
-						p.sendMessage("   §8» §eKD: " + kd);
-						p.sendMessage(" ");
-					} else {
-						p.sendMessage(" ");
-						p.sendMessage(" §8» §c§lDer Spieler " + target.getName() + " war noch nicht auf dem Server!");
-						p.sendMessage(" ");
+							double kd = (double) Points.getPoints(target.getUniqueId())
+									/ (double) Points.getDeaths(target.getUniqueId());
+							kd = (double) Math.round(kd * 100) / 100;
+
+							p.sendMessage(" ");
+							p.sendMessage(" §8» §6§lStats von " + target.getName() + ":");
+							p.sendMessage("   §8» §eKills: " + Points.getPoints(target.getUniqueId()));
+							p.sendMessage("   §8» §eTode: " + Points.getDeaths(target.getUniqueId()));
+							p.sendMessage("   §8» §eKD: " + kd);
+							p.sendMessage(" ");
+						} else {
+							p.sendMessage(" ");
+							p.sendMessage(
+									" §8» §c§lDer Spieler " + target.getName() + " war noch nicht auf dem Server!");
+							p.sendMessage(" ");
+						}
+					} catch (Exception e) {
+						help(p);
 					}
-				} catch (Exception e) {
+
+				} else {
 					help(p);
 				}
-
-			} else {
-				help(p);
 			}
-
 		}
 		return false;
 	}

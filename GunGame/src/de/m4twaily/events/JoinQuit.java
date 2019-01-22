@@ -19,6 +19,8 @@ import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 public class JoinQuit implements Listener {
 	
+	//Disabled
+	
 	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onQuit(PlayerQuitEvent e) {
